@@ -1,3 +1,13 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [HomeController.cs](./CS/DXWebApplication1/Controllers/HomeController.cs) (VB: [HomeController.vb](./VB/DXWebApplication1/Controllers/HomeController.vb))
+* [DataHelper.cs](./CS/DXWebApplication1/Models/DataHelper.cs) (VB: [DataHelper.vb](./VB/DXWebApplication1/Models/DataHelper.vb))
+* [DataClassesDataContext.cs](./CS/DXWebApplication1/Models/EF/DataClassesDataContext.cs) (VB: [DataClassesDataContext.vb](./VB/DXWebApplication1/Models/EF/DataClassesDataContext.vb))
+* [Doc.cs](./CS/DXWebApplication1/Models/EF/Doc.cs) (VB: [Doc.vb](./VB/DXWebApplication1/Models/EF/Doc.vb))
+* [Index.cshtml](./CS/DXWebApplication1/Views/Home/Index.cshtml)
+* [RichEditPartial.cshtml](./CS/DXWebApplication1/Views/Home/RichEditPartial.cshtml)
+<!-- default file list end -->
 # RichEdit - How to save and load documents from a database
 
 
