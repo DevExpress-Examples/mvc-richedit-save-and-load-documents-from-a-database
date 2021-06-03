@@ -39,7 +39,7 @@ This code example demonstrates how to save and restore RichEdit documents from a
 <br>Save a document
 
 * Click the built-in toolbar's Save button/item.
-* Use the <a href="https://documentation.devexpress.com/#AspNet/DevExpressWebMvcRichEditSettings_Savingtopic">RichEditSettings.Saving</a> property to handle the <a href="https://documentation.devexpress.com/AspNet/DevExpressWebOfficeDocumentManager_AutoSavingtopic.aspx">DocumentManager.AutoSaving</a> event.
+* Use the <a href="https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RichEditSettings.Saving">RichEditSettings.Saving</a> property to handle the <a href="https://documentation.devexpress.com/AspNet/DevExpressWebOfficeDocumentManager_AutoSavingtopic.aspx">DocumentManager.AutoSaving</a> event.
 * Retrieve the modified content via the <a href="https://documentation.devexpress.com/#AspNet/DevExpressWebMvcRichEditExtension_SaveCopytopic">RichEditExtension.SaveCopy</a> method, save it to the related bound model's binary property, and set the EventArgs Handled property to True (see the HomeController source code file):<br><br>
 
 ```cs
