@@ -7,7 +7,7 @@ This code example demonstrates how to open and save RichEdit documents from a da
 * Pass a model with a binary property (rich text content to be displayed) to the RichEdit's PartialView.
 * Call the [RichEditExtension.Open](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RichEditExtension.Open.overloads) method to open a new document with the specified document ID and content type, and retrieve the binary content from the passed model:
 
-```html
+```cs
 @Html.DevExpress().RichEdit(settings => {
     settings.Name = "RichEditName";
     settings.CallbackRouteValues = new { Controller = "Home", Action = "RichEditPartial" };
