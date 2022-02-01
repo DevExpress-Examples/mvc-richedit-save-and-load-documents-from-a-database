@@ -18,7 +18,7 @@ This code example demonstrates how to open and save RichEdit documents from a da
 
 * Click the Save ribbon command to initiate a save operation for the active document.
 * Use the [RichEditSettings.Saving](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RichEditSettings.Saving) property to save a document in a byte array.
-* Call the [RichEditExtension.SaveCopy](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RichEditExtension.SaveCopy.overloads) method to get the active document as a byte array, save it to the related bound model's binary property, and set the [Handled](https://docs.devexpress.com/AspNet/DevExpress.Web.Office.DocumentSavingEventArgs.Handled) property to `true` to prevent the default document processing:
+* Call the [RichEditExtension.SaveCopy](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RichEditExtension.SaveCopy.overloads) method to get the active document as a byte array, save it to the related bound model's binary property, and set the [Handled](https://docs.devexpress.com/AspNet/DevExpress.Web.Office.DocumentSavingEventArgs.Handled) property to `true` to prevent the [default document processing](https://docs.devexpress.com/AspNet/403545/components/rich-text-editor/document-management/save-a-document):
 
 ```cs
 settings.Saving = (s, e) => {
