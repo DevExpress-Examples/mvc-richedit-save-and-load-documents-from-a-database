@@ -1,73 +1,41 @@
-<!-- default badges list -->
-![](https://img.shields.io/endpoint?url=https://codecentral.devexpress.com/api/v1/VersionRange/128553200/16.1.9%2B)
-[![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T352035)
-[![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
-<!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
+# Rich Text Editor for MVC - How to open and save documents from a database
 
-* [HomeController.cs](./CS/DXWebApplication1/Controllers/HomeController.cs) (VB: [HomeController.vb](./VB/DXWebApplication1/Controllers/HomeController.vb))
-* [DataHelper.cs](./CS/DXWebApplication1/Models/DataHelper.cs) (VB: [DataHelper.vb](./VB/DXWebApplication1/Models/DataHelper.vb))
-* [DataClassesDataContext.cs](./CS/DXWebApplication1/Models/EF/DataClassesDataContext.cs) (VB: [DataClassesDataContext.vb](./VB/DXWebApplication1/Models/EF/DataClassesDataContext.vb))
-* [Doc.cs](./CS/DXWebApplication1/Models/EF/Doc.cs) (VB: [Doc.vb](./VB/DXWebApplication1/Models/EF/Doc.vb))
-* [Index.cshtml](./CS/DXWebApplication1/Views/Home/Index.cshtml)
-* [RichEditPartial.cshtml](./CS/DXWebApplication1/Views/Home/RichEditPartial.cshtml)
-<!-- default file list end -->
-# RichEdit - How to save and load documents from a database
+This code example demonstrates how to open and save RichEdit documents from a database binary column.
 
-
-This code example demonstrates how to save and restore RichEdit documents from a database using a binary column.<br><br>Load document
+## Open a document
 
 * Pass a model with a binary property (rich text content to be displayed) to the RichEdit's PartialView.
-* Use the <a href="https://documentation.devexpress.com/#AspNet/DevExpressWebMvcRichEditExtension_Opentopic">RichEditExtension.Open</a> method to open a new document with the specified/unique document ID and the necessary rich content type, and retrieve the binary content from the passed model (see the RichEditPartial source code file):<br><br>
+* Call the [RichEditExtension.Open](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RichEditExtension.Open.overloads) method to open a new document with the specified document ID and content type, and retrieve the binary content from the passed model:
 
 ```cs
 @Html.DevExpress().RichEdit(settings => {
-    settings.Name = "RichEditNameHere";
-    settings.CallbackRouteValues = new { Controller = ..., Action = "ActionMethodThatHandlesRichEditCallbacks" };
-}).Open(UNIQUE_DOCUMENT_ID_HERE, RICH_TEXT_FORMAT_HERE, () => { return MODEL_BINARY_PROPERTY_HERE; }).GetHtml()
+    settings.Name = "RichEditName";
+    settings.CallbackRouteValues = new { Controller = "Home", Action = "RichEditPartial" };
+    //...
+}).Open(Model.DocumentId, Model.DocumentFormat, () => { return Model.Document; }).GetHtml()
 ```
+## Save a document
 
-<br>
-
-```vb
-@Html.DevExpress().RichEdit( _
-    Sub(settings)
-            settings.Name = "RichEditNameHere"
-            settings.CallbackRouteValues = New With {.Controller = "...", .Action = "ActionMethodThatHandlesRichEditCallbacks"}
-    End Sub).Open(UNIQUE_DOCUMENT_ID_HERE, RICH_TEXT_FORMAT_HERE, _
-              Function()
-                      Return MODEL_BINARY_PROPERTY_HERE
-              End Function).GetHtml()
-```
-
-<br>Save a document
-
-* Click the built-in toolbar's Save button/item.
-* Use the <a href="https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RichEditSettings.Saving">RichEditSettings.Saving</a> property to handle the <a href="https://documentation.devexpress.com/AspNet/DevExpressWebOfficeDocumentManager_AutoSavingtopic.aspx">DocumentManager.AutoSaving</a> event.
-* Retrieve the modified content via the <a href="https://documentation.devexpress.com/#AspNet/DevExpressWebMvcRichEditExtension_SaveCopytopic">RichEditExtension.SaveCopy</a> method, save it to the related bound model's binary property, and set the EventArgs Handled property to True (see the HomeController source code file):<br><br>
+* Click the Save ribbon command to initiate a save operation for the active document.
+* Use the [RichEditSettings.Saving](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RichEditSettings.Saving) property to save a document in a byte array.
+* Call the [RichEditExtension.SaveCopy](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RichEditExtension.SaveCopy.overloads) method to get the active document as a byte array, save it to the related bound model's binary property, and set the [Handled](https://docs.devexpress.com/AspNet/DevExpress.Web.Office.DocumentSavingEventArgs.Handled) property to `true` to prevent the [default document processing](https://docs.devexpress.com/AspNet/403545/components/rich-text-editor/document-management/save-a-document):
 
 ```cs
-settings.Saving = (s, e) =>
-{
+settings.Saving = (s, e) => {
     byte[] docBytes = RichEditExtension.SaveCopy("RichEditName", DevExpress.XtraRichEdit.DocumentFormat.Rtf);
     DXWebApplication1.Models.DataHelper.SaveDocument(docBytes);
     e.Handled = true;
 };
 ```
 
-<br>
+## Files to Look At
+<!-- default file list -->
+- [RichEditPartial.cshtml](./CS/DXWebApplication1/Views/Home/RichEditPartial.cshtml) (VB: [RichEditPartial.vbhtml](./VB/DXWebApplication1/Views/Home/RichEditPartial.vbhtml))
+- [DataHelper.cs](./CS/DXWebApplication1/Models/DataHelper.cs) (VB: [DataHelper.vb](./VB/DXWebApplication1/Models/DataHelper.vb))
+<!-- default file list end -->
 
-```vb
-settings.Saving = Sub(s, e)
-    Dim docBytes As Byte() = RichEditExtension.SaveCopy("RichEditName", DevExpress.XtraRichEdit.DocumentFormat.Rtf)
-    DXWebApplication1.Models.DataHelper.SaveDocument(docBytes)
-    e.Handled = True
-End Sub
-```
+## Documentation
+- [ASPxRichEdit Document Management](https://docs.devexpress.com/AspNet/401562/components/rich-text-editor/document-management)
 
-<br><strong>See Also:</strong><br><strong>WebForms Version:</strong><br><a href="https://www.devexpress.com/Support/Center/p/T352034">T352034: ASPxRichEdit - How to save and load documents from a database</a>‌
-
-<br/>
-
-
+## More Examples
+- [Rich Text Editor for Web Forms - How to open and save documents from a database](https://github.com/DevExpress-Examples/aspxrichedit-how-to-save-and-load-documents-from-a-database-t352034)
