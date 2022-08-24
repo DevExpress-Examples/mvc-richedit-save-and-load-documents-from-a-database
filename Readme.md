@@ -3,14 +3,16 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T352035)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-# Rich Text Editor for MVC - How to open and save documents from a database
+# Rich Text Editor for ASP.NET MVC - How to open and save documents from a database
 
 This code example demonstrates how to open and save RichEdit documents from a database binary column.
 
-## Open a document
+## Implementation Details
+
+### Open a document
 
 * Pass a model with a binary property (rich text content to be displayed) to the RichEdit's PartialView.
-* Call the [RichEditExtension.Open](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RichEditExtension.Open.overloads) method to open a new document with the specified document ID and content type, and retrieve the binary content from the passed model:
+* Call the [`RichEditExtension.Open`](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RichEditExtension.Open.overloads) method to open a new document with the specified document ID and content type, and retrieve the binary content from the passed model:
 
 ```cs
 @Html.DevExpress().RichEdit(settings => {
@@ -19,11 +21,11 @@ This code example demonstrates how to open and save RichEdit documents from a da
     //...
 }).Open(Model.DocumentId, Model.DocumentFormat, () => { return Model.Document; }).GetHtml()
 ```
-## Save a document
+### Save a document
 
 * Click the Save ribbon command to initiate a save operation for the active document.
-* Use the [RichEditSettings.Saving](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RichEditSettings.Saving) property to save a document in a byte array.
-* Call the [RichEditExtension.SaveCopy](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RichEditExtension.SaveCopy.overloads) method to get the active document as a byte array, save it to the related bound model's binary property, and set the [Handled](https://docs.devexpress.com/AspNet/DevExpress.Web.Office.DocumentSavingEventArgs.Handled) property to `true` to prevent the [default document processing](https://docs.devexpress.com/AspNet/403545/components/rich-text-editor/document-management/save-a-document):
+* Use the [`RichEditSettings.Saving`](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RichEditSettings.Saving) property to save a document in a byte array.
+* Call the [`RichEditExtension.SaveCopy`](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RichEditExtension.SaveCopy.overloads) method to get the active document as a byte array, save it to the related bound model's binary property, and set the [`Handled`](https://docs.devexpress.com/AspNet/DevExpress.Web.Office.DocumentSavingEventArgs.Handled) property to `true` to prevent the [default document processing](https://docs.devexpress.com/AspNet/403545/components/rich-text-editor/document-management/save-a-document):
 
 ```cs
 settings.Saving = (s, e) => {
