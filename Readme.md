@@ -48,7 +48,7 @@ settings.Saving = (s, e) => {
 ## More Examples
 - [Rich Text Editor for Web Forms - How to open and save documents from a database](https://github.com/DevExpress-Examples/aspxrichedit-how-to-save-and-load-documents-from-a-database-t352034)
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=mvc-richedit-save-and-load-documents-from-a-database&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=mvc-richedit-save-and-load-documents-from-a-database&~~~was_helpful=no)
 
